@@ -1,7 +1,6 @@
 React integration for Adamite.
 
 [![CircleCI](https://circleci.com/gh/adamitejs/react.svg?style=svg)](https://circleci.com/gh/adamitejs/react)
-[![codecov](https://codecov.io/gh/adamitejs/react/branch/master/graph/badge.svg)](https://codecov.io/gh/adamitejs/react)
 
 ## Installation
 
