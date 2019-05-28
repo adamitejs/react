@@ -13,7 +13,6 @@ function useReference(ref: DocumentReference | CollectionReference, options = { 
     }
 
     const unsubscribe = ref.onSnapshot((snapshot: DocumentSnapshot | CollectionSnapshot) => {
-      console.log("value");
       setValue(snapshot);
       setLoading(false);
     });
