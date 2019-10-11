@@ -1,6 +1,6 @@
 {
   "name": "@adamite/react",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "description": "Adamite React integrations.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
