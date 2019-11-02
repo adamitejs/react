@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { DocumentSnapshot, CollectionSnapshot, DocumentReference, CollectionReference } from "@adamite/sdk";
 
-function useReference(ref: DocumentReference | CollectionReference, options = { skip: false }) {
+function useReference(
+  ref: DocumentReference | CollectionReference,
+  options = { skip: false }
+): { loading: boolean; value: DocumentSnapshot | CollectionSnapshot | undefined } {
   const [loading, setLoading] = useState(true);
   const [value, setValue] = useState();
 

@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { DocumentReference, CollectionReference } from "@adamite/sdk";
+import { DocumentReference, CollectionReference, CollectionSnapshot, DocumentSnapshot } from "@adamite/sdk";
 
-function useReferenceOnce(ref: DocumentReference | CollectionReference) {
+function useReferenceOnce(
+  ref: DocumentReference | CollectionReference
+): { loading: boolean; value: DocumentSnapshot | CollectionSnapshot | undefined; refetch: Function } {
   const [loading, setLoading] = useState(true);
   const [value, setValue] = useState();
 
