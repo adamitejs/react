@@ -26,6 +26,7 @@ export default function useUserData(
     }
 
     usersRef
+      .doc(authState.id)
       .get()
       .then(snap => {
         setUserData(snap);
