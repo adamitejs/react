@@ -1,6 +1,6 @@
 import adamite from "@adamite/sdk";
 import useAuthState from "./useAuthState";
-import useReference from "./useReference";
+import { useEffect, useState } from "react";
 
 export default function useUserData(
   usersRef = adamite()
@@ -8,16 +8,31 @@ export default function useUserData(
     .collection("users"),
   auth = adamite().auth()
 ) {
-  const { user: authState } = useAuthState(auth);
-  const userRef = usersRef.doc(authState ? authState.id : "");
+  const [authState, authStateLoading] = useAuthState(auth);
+  const [userData, setUserData] = useState();
+  const [loading, setLoading] = useState(true);
 
-  const { loading, value: userData } = useReference(userRef, {
-    skip: !authState
-  });
+  useEffect(() => {
+    if (authStateLoading) {
+      setLoading(true);
+      setUserData(undefined);
+      return;
+    }
 
-  return {
-    loading: loading,
-    user: userData,
-    authState: authState
-  };
+    if (!authState) {
+      setLoading(false);
+      setUserData(undefined);
+      return;
+    }
+
+    usersRef
+      .get()
+      .then(snap => {
+        setUserData(snap);
+        setLoading(false);
+      })
+      .catch(err => console.error(err));
+  }, [authState, authStateLoading]);
+
+  return [userData, loading || authStateLoading];
 }
